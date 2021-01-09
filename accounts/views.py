@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Student
 from .forms import Stdform
@@ -22,6 +22,7 @@ def create_view(request):
 
     if form.is_valid():
         form.save()
+        return HttpResponseRedirect("/")
 
     context['form'] = form
     return render(request, 'accounts/create_view.html', context)
